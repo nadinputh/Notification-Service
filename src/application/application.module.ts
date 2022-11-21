@@ -8,8 +8,6 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { UserController } from './controller/user.controller';
 import { HomeListener } from './listener/home.listener';
 import { DomainModule } from '@domain/domain.module';
-import { RolesGuard } from './guard/roles.guard';
-import { PermissionGuard } from './guard/permissions.guard';
 import { UserListener } from './listener/user.listener';
 import { HttpExceptionFilter } from './exception/filter/http.filter';
 import {
@@ -29,7 +27,8 @@ import { BadRequestExceptionFilter } from './exception/filter/bad-request.filter
       fallbackLanguage: process.env.FALLBACK_LOCALE || 'en',
       parser: I18nJsonParser,
       parserOptions: {
-        path: path.join(__dirname, '../i18n/'),
+        path: path.join(__dirname, '/i18n/'),
+        watch: true,
       },
       resolvers: [AcceptLanguageResolver],
     }),
@@ -41,14 +40,6 @@ import { BadRequestExceptionFilter } from './exception/filter/bad-request.filter
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: PermissionGuard,
     },
     {
       provide: APP_INTERCEPTOR,

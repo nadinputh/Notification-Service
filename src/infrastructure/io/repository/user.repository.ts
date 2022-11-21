@@ -1,12 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '@entities/user.entity';
-import { CreateUserCommand } from '@dtos/command/create-user.command';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IUserRepository } from '@adapters/repository/user.repository';
-import { UsersPaging } from '@dtos/result/users.result';
-import { UserResponse } from '@dtos/response/user.response';
-import { UsersCommand } from '@dtos/command/users.command';
 
 @Injectable()
 export class UsersRepository implements IUserRepository {
@@ -15,7 +11,7 @@ export class UsersRepository implements IUserRepository {
     private usersRepository: Repository<User>,
   ) {}
 
-  async getAll({ size = 10, page = 1 }: UsersCommand): Promise<UsersPaging> {
+  async getAll({ size = 10, page = 1 }: any): Promise<any> {
     const [users, total] = await this.usersRepository
       .findAndCount({
         order: {
@@ -45,7 +41,7 @@ export class UsersRepository implements IUserRepository {
     };
   }
 
-  create(dto: CreateUserCommand): Promise<UserResponse> {
+  create(dto: any): Promise<any> {
     const user = new User();
     user.firstName = dto.firstName;
     user.lastName = dto.lastName;

@@ -2,6 +2,38 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "assets": ["i18n/**/*"]
+    "assets": [
+      {
+        "include": "i18n/**/*",
+        "watchAssets": true,
+        "outDir": "dist"
+      },
+      {
+        "include": "views/**/*",
+        "watchAssets": true,
+        "outDir": "dist"
+      }
+    ],
+    "webpack": true
+  },
+  "projects": {
+    "notifier": {
+      "type": "library",
+      "root": "libs/notifier",
+      "entryFile": "index",
+      "sourceRoot": "libs/notifier/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/notifier/tsconfig.lib.json"
+      }
+    },
+    "mailer": {
+      "type": "library",
+      "root": "libs/mailer",
+      "entryFile": "index",
+      "sourceRoot": "libs/mailer/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/mailer/tsconfig.lib.json"
+      }
+    }
   }
 }

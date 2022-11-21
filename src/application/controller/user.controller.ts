@@ -1,17 +1,7 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Inject,
-  NotFoundException,
-  Post,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, Query } from '@nestjs/common';
 import { IUserService, USER_SERVICE } from '@services/user.service';
-import { UserCreatedResponse } from '@dtos/response/user-created.response';
 import { CreateUserRequest } from '../request/create-user.request';
 import { PaginateRequest } from '../request/paging.query';
-import { UsersPaging } from '@dtos/result/users.result';
 
 @Controller('/users')
 export class UserController {
@@ -21,15 +11,13 @@ export class UserController {
   ) {}
 
   @Get()
-  async index(@Query() query: PaginateRequest): Promise<UsersPaging> {
+  async index(@Query() query: PaginateRequest): Promise<any> {
     // throw new NotFoundException({ message: { key: 'exceptions.not_found' } });
     return this.userService.getAll(query);
   }
 
   @Post()
-  async create(
-    @Body() request: CreateUserRequest,
-  ): Promise<UserCreatedResponse> {
+  async create(@Body() request: CreateUserRequest): Promise<any> {
     return {
       user: await this.userService.create({
         firstName: request.firstName,

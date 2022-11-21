@@ -1,9 +1,19 @@
 {
-  "moduleFileExtensions": ["js", "json", "ts"],
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
   "rootDir": ".",
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@notifier/(.*)": "<rootDir>/../libs/notifier/src/$1",
+    "@notifier": "<rootDir>/../libs/notifier/src",
+    "@mailer/mailer/(.*)": "<rootDir>/../libs/mailer/src/$1",
+    "@mailer/mailer": "<rootDir>/../libs/mailer/src"
   }
 }

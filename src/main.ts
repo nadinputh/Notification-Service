@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import * as helmet from 'helmet';
-import * as compression from 'compression';
+import helmet from 'helmet';
+import compression from 'compression';
 import { AppModule } from './app.module';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { HttpError } from './constant/http-error.constant';

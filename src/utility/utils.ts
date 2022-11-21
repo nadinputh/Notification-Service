@@ -28,3 +28,13 @@ export const toCamelCase = (str: string): string => {
     })
     .join('');
 };
+
+export const toBoolean = (val: any): boolean => {
+  if (!val) {
+    return false;
+  }
+  if (val == 1 || val == 'true') {
+    return true;
+  }
+  return false;
+};
